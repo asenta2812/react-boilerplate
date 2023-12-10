@@ -1,0 +1,25 @@
+.layout {
+  &__logo {
+    background-color: gray;
+    margin: 16px;
+    border-radius: 8px;
+  }
+
+  &__sider {
+    overflow: auto;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  &__content {
+    padding: 16px;
+
+    &--inner {
+      padding: 24px;
+      min-height: 50vh;
+    }
+  }
+}

@@ -1,34 +1,26 @@
-import { useState } from 'react'
+import 'antd/dist/reset.css'
+import './styles/index.scss'
 
-import viteLogo from '/vite.svg'
+import { StyleProvider } from '@ant-design/cssinjs'
+import { ConfigProvider } from 'antd'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 
-import reactLogo from './assets/react.svg'
+import { AppRouter } from './routes'
+import { persistor, store } from './store'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <StyleProvider hashPriority="high">
+        <ConfigProvider theme={{ cssVar: true, hashed: false }}>
+          <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+              <AppRouter />
+            </PersistGate>
+          </Provider>
+        </ConfigProvider>
+      </StyleProvider>
     </>
   )
 }
